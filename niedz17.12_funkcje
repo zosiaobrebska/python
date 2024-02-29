@@ -1,0 +1,24 @@
+def add(x,y):
+    return x+y
+
+def multiplication(x,y):
+    return x*y
+
+def compare_floats(x,y,tolerance=1e-5):
+    return abs(x-y) < tolerance #abs -> wart bezwgledna
+
+
+def fizzbuzz(number):
+    if isinstance(number, int) and number >0 : #czy cos jest danego typu sprawdzenie
+        #czy to co przekazalismy jako number jest int'em i musi byc to jako pierwszy warunek !!!
+        #to jest sprawdzenie czy to jest liczbą i jesli jest to mozemy sprawdzic czy jest wieksze od zera
+        #dlatego musi być jako pierwsze w kolejnosci
+        if number%3 == 0 and number%5 ==0:  #musi byc u gory, zeby dzialalo
+            return "fizzbuzz"
+        elif number%3 == 0:
+            return "fizz"
+        elif number%5 == 0:
+            return "buzz"
+        else:
+            return str(number)
+    return None
