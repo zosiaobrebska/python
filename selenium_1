@@ -1,0 +1,42 @@
+import time
+from selenium import webdriver  # wazne ! plik - nazwa tego nie moze tez byc selenium tylko np: cw_selenium
+from selenium.webdriver.common.keys import Keys   #zeby uzyc przycisku enter lub wgl klawisze
+#inicjalizacja przeglądarki chrome
+driver = webdriver.Chrome()
+
+url = "https://www.google.com"
+new_url = "https://www.wp.pl"
+#otwarcie okna przeglądarki
+driver.get(url)  #trzeba podawać pelny adres z: https://
+
+#sterowanie rozmiarem okna przeglądarki, bo domyslnie otwiera się na pol ekranu
+driver.maximize_window()
+
+#znajdz element "akceptuj zgody" za pomocą xpath i kliknij w nią: znaleźlismy xpath (lokalizację tej zgody na stronie za pomocą zbadaj) w kodzie google
+#trzeba w miejscu ktore nas interesuje kliknąc fn, command i myszkę i pokaze się kod tego miejsca
+accept = driver.find_element("xpath", '//*[@id="L2AGLb"]/div')  #accept, zeby btlo latwiej kliknac
+accept.click()
+
+#znajdz pole w google do wpisania hasłą pogoda
+search_box = driver.find_element('id', 'APjFqb')
+#jest to pole typu input, wiec nie musimy klikac tylko odrazu pisac
+search_box.send_keys('pogoda')
+
+#nacisniecie enter
+search_box.send_keys(Keys.ENTER)
+
+#otwarcie nowej zakładki/ tab:
+driver.execute_script("window.open('');")
+
+#przełączenie do okna
+driver.switch_to.window(driver.window_handles[1])
+driver.get(new_url)
+
+driver.close() # zamyka daną zakładkę
+time.sleep(5)  #po to zebysmy zobaczyli czy przegladarka serio sie otworzy i po 5 sek się zamknie (ale tak nie dobrze)
+#sleep nie powinno się uzywac w testach, bo wydłuza czas
+
+driver.quit()     #wyjście z przeglądarki w porządny sposob - zakonczenie dzialania przegladarki
+
+#metody zamykania quit i close - roznica jedna zamyka tylko konkretną zakładkę a jedna calkowicie wszystko
+
