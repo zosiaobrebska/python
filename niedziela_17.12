@@ -1,1 +1,25 @@
+<Click to see difference>
+
+def test_1():
+        assert multiplication(2,5)==10
+>       assert multiplication(100,1.1)==110
+E       assert 110.00000000000001 == 110
+E        +  where 110.00000000000001 = multiplication(100, 1.1)
+
+"""
+
+def test_2():
+
+    assert fizzbuzz(1)=="1"
+    assert fizzbuzz(2) == "2"
+    assert fizzbuzz(3)== "fizz"
+    assert fizzbuzz(4) == "4"
+    assert fizzbuzz(5)=="buzz"
+    assert fizzbuzz(6)=="fizz"
+    assert fizzbuzz(10)=="buzz"
+    assert fizzbuzz(15)=="fizzbuzz"
+
+def test_3():
+    assert fizzbuzz(0) == None  # to zalezy ode mnie - gre zaczynamy od 1
+    assert fizzbuzz("kot") == None
 
