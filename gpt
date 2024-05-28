@@ -1,0 +1,43 @@
+# 1st step: trzeba zainstalowac:  pip install pyinstaller
+#uruchomienie pliku w shellu: pyinstaller ./collatz.py
+
+#API - applicaton programming interface
+'''
+response = httpx.get("https://www.google.com")
+print(response.text)
+#info z tego:
+#4-5 oznacze zle
+#2-3 ok
+'''
+
+import httpx        #albo import requests - podobne
+import sys
+API_KEY = "kod ze strony, ja go nie mam"
+url = "https://api.edenai.run/v2/text/chat"
+
+
+def ask(prompt: str)->str:
+    provider = "openai/gpt-3.5-turbo"
+    payload={
+        "providers": [provider],
+        "text": prompt
+        #"providers": ["openai/gpt-3.5-turbo"],  #otrzymujemy w konsoli odpowiedz z czatu gpt na pytanie:
+        #"text": "Jakie znasz biblioteki w pythonie?"
+    }
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json", #wskazujemy, ze ma odpowiedziec za pomoca json
+        "authorization": f"Bearer {API_KEY}"
+    }
+    response = httpx.post(url, json=payload, headers = headers, timeout=60)
+    print(response.text)
+
+
+
+def main():
+    prompt = sys.argv[1]
+    print(ask("jaka sytuacja na rynku IT?"))
+    
+if __name__=='__main__':
+    main()
+   
