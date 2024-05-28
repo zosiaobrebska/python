@@ -1,0 +1,42 @@
+"""
+
+Count the number of steps of collatz conjecture for each int from 2 to 100
+3->10->5->16->8->4->2->
+"""
+
+def collatz_iteration(n:int) ->int:
+    """ If number is even, divide it by 2.
+    If it's odd (nieparzysty), multiply by 3 and add 1"""
+
+    if n % 2 !=0:
+        return n*3+1
+    else:
+        return n//2 #(Częsc całkowita z dzielenia) - zeby nie robił się float
+
+#print(collatz_iteration(5))
+"""lub: 
+if n % 2 ==0:
+    return n //2 (Częsc całkowita z dzielenia)
+else:
+    return n*3+1
+"""
+"""Cirkawostka:
+ mozna tez tak, bo return wychodzi z funkcji
+    if n % 2 !=0:
+        return n*3+1
+    return n//2
+"""
+def collatz_conjecture(number: int):
+    steps = [number]
+    while number !=1:
+        number = collatz_iteration(number)
+        steps.append(number)
+    return steps
+
+def main():
+    steps = collatz_conjecture(3)
+    print(steps)
+
+#jezeli to jest głowny plik wykonywalny to wtedy to sie wykona  - przypadne jak importujemy tu jakis inny plik typu: mamy kolejny plik b z jakims printem i piszemy tu: import b
+if __name__ == '__main__':  #zmienna __name__ zawsze istnieje - zawiera w sobie nazwę modulu/pliku w ktorym jest
+    main()
